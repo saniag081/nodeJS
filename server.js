@@ -39,6 +39,8 @@ router.post('/message', function(req,res){
 //     res.send('Hola');
 // });
 
+//servir staticos
+app.use('/app', express.static('public'));
 
 //puerto
 app.listen(3000);
