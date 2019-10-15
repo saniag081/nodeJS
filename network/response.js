@@ -5,7 +5,9 @@ exports.success = function (req,res,menssage,status){
     });
 }
 
-exports.error = function (req, res, menssage,status){
+exports.error = function (req, res, menssage,status,details){
+    console.error('[response error]' + details);
+
     res.status(status || 500).send({
         error: menssage,
         body: ''
