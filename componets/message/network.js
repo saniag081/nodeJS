@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const response = require('./../../network/response');
+const controller = require('./controller');
 
 
 router.get('/', function(req,res){
@@ -12,19 +13,14 @@ router.get('/', function(req,res){
 })
 
 router.post('/', function(req,res){
-    console.log(req.query);
-    console.log(req.body);
-    //estaodos           tipos de respuestas Vacía, plana, con datos y estructurada
-    // res.status(201).send({
-    //     error: '',
-    //     body: 'creado correctamente'
-    // });
-    if(req.query.error == 'ok'){
-        response.error(req,res,'Error inesperado',500,'Es solo una simulacion de los errores');
-    }else{
-        response.success(req,res,'Creado correctamente',201);
-    }
 
+    controller.addMenssage(req.body.user, req.body.menssage)
+        .then((fullMenssage)=>{
+            response.success(req,res,fullMenssage,201);
+        })
+        .catch((err)=>{
+            response.error(req,res,'Informacion invalida',400,'error en el controlador');
+        });
 })
 
 module.exports = router;
