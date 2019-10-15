@@ -16,10 +16,14 @@ router.get('/message', function(req,res){
     res.send('Lista de mensajes');
 })
 
-router.delete('/message', function(req,res){
+router.post('/message', function(req,res){
     console.log(req.query);
     console.log(req.body);
-    res.send('Mensaje ' + req.body.text + ' añadido');
+    //estaodos           tipos de respuestas Vacía, plana, con datos y estructurada
+    res.status(201).send({
+        error: '',
+        body: 'creado correctamente'
+    });
 })
 
 // app.use('/',(req,res)=>{
